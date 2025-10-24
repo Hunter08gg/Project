@@ -33,6 +33,25 @@ namespace PersonalFinanceTracker
             ConfigureDataGridView();
             UpdateBalance();
             UpdateCategoriesComboBox();
+            UpdateTotalStatistics();
+        }
+
+        private void UpdateTotalStatistics()
+        {
+            decimal totalIncome = 0;
+            decimal totalExpenses = 0;
+
+            foreach (var operation in operations)
+            {
+                if (operation.Type == "Доход")
+                    totalIncome += operation.Amount;
+                else
+                    totalExpenses += operation.Amount;
+            }
+
+            // Обновляем labels
+            lblTotalIncome.Text = totalIncome.ToString("C2");
+            lblTotalExpenses.Text = totalExpenses.ToString("C2");
         }
 
         private void InitializeDatabase()
@@ -220,6 +239,7 @@ namespace PersonalFinanceTracker
 
                 textBoxAmount.Clear();
                 UpdateBalance();
+                UpdateTotalStatistics();
             }
             else
             {
@@ -270,6 +290,7 @@ namespace PersonalFinanceTracker
         private void buttonUpdateBalance_Click(object sender, EventArgs e)
         {
             UpdateBalance();
+            UpdateTotalStatistics();
         }
 
         private void buttonDelete_Click(object sender, EventArgs e)
@@ -286,6 +307,7 @@ namespace PersonalFinanceTracker
                     DeleteOperationFromDatabase(selectedOperation.Id);
                     LoadOperations();
                     UpdateBalance();
+                    UpdateTotalStatistics();
                 }
             }
             else
@@ -309,7 +331,7 @@ namespace PersonalFinanceTracker
 
         private void buttonManageCategories_Click(object sender, EventArgs e)
         {
-            using (var form = new SimpleCategoriesForm(categories, connectionString))
+            using (var form = new CategoriesForm(categories, connectionString))
             {
                 if (form.ShowDialog() == DialogResult.OK)
                 {

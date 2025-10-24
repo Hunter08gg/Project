@@ -32,8 +32,15 @@
             this.buttonUpdateBalance = new System.Windows.Forms.Button();
             this.buttonDelete = new System.Windows.Forms.Button();
             this.buttonManageCategories = new System.Windows.Forms.Button();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.lblTotalExpenses = new System.Windows.Forms.Label();
+            this.lblTotalIncome = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewOperations)).BeginInit();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -180,11 +187,74 @@
             this.buttonManageCategories.UseVisualStyleBackColor = true;
             this.buttonManageCategories.Click += new System.EventHandler(this.buttonManageCategories_Click);
             // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.lblTotalExpenses);
+            this.groupBox2.Controls.Add(this.lblTotalIncome);
+            this.groupBox2.Controls.Add(this.label7);
+            this.groupBox2.Controls.Add(this.label6);
+            this.groupBox2.Controls.Add(this.label5);
+            this.groupBox2.Location = new System.Drawing.Point(12, 390);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(600, 80);
+            this.groupBox2.TabIndex = 7;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Общая статистика за все время";
+            // 
+            // lblTotalExpenses
+            // 
+            this.lblTotalExpenses.AutoSize = true;
+            this.lblTotalExpenses.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lblTotalExpenses.ForeColor = System.Drawing.Color.Red;
+            this.lblTotalExpenses.Location = new System.Drawing.Point(400, 35);
+            this.lblTotalExpenses.Name = "lblTotalExpenses";
+            this.lblTotalExpenses.Size = new System.Drawing.Size(35, 19);
+            this.lblTotalExpenses.TabIndex = 4;
+            this.lblTotalExpenses.Text = "0 ₽";
+            // 
+            // lblTotalIncome
+            // 
+            this.lblTotalIncome.AutoSize = true;
+            this.lblTotalIncome.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lblTotalIncome.ForeColor = System.Drawing.Color.Green;
+            this.lblTotalIncome.Location = new System.Drawing.Point(150, 35);
+            this.lblTotalIncome.Name = "lblTotalIncome";
+            this.lblTotalIncome.Size = new System.Drawing.Size(35, 19);
+            this.lblTotalIncome.TabIndex = 3;
+            this.lblTotalIncome.Text = "0 ₽";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(320, 37);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(74, 15);
+            this.label7.TabIndex = 2;
+            this.label7.Text = "Расходы:";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(80, 37);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(64, 15);
+            this.label6.TabIndex = 1;
+            this.label6.Text = "Доходы:";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(20, 37);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(0, 15);
+            this.label5.TabIndex = 0;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(624, 391);
+            this.ClientSize = new System.Drawing.Size(624, 482);
+            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.buttonManageCategories);
             this.Controls.Add(this.buttonDelete);
             this.Controls.Add(this.buttonUpdateBalance);
@@ -198,8 +268,11 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewOperations)).EndInit();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
+
         }
 
         #endregion
@@ -219,5 +292,11 @@
         private Button buttonUpdateBalance;
         private Button buttonDelete;
         private Button buttonManageCategories;
+        private GroupBox groupBox2;
+        private Label lblTotalExpenses;
+        private Label lblTotalIncome;
+        private Label label7;
+        private Label label6;
+        private Label label5;
     }
 }

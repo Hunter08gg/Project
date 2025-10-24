@@ -9,13 +9,13 @@ using Microsoft.Data.Sqlite;
 
 namespace PersonalFinanceTracker
 {
-    public partial class SimpleCategoriesForm : Form
+    public partial class CategoriesForm : Form
     {
         private List<string> categories;
         private string connectionString;
         private BindingList<string> bindingCategories;
 
-        public SimpleCategoriesForm(List<string> existingCategories, string connectionString)
+        public CategoriesForm(List<string> existingCategories, string connectionString)
         {
             InitializeComponent();
             this.categories = existingCategories;

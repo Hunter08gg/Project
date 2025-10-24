@@ -1,6 +1,6 @@
 ﻿namespace PersonalFinanceTracker
 {
-    partial class SimpleCategoriesForm
+    partial class CategoriesForm
     {
         private System.ComponentModel.IContainer components = null;
 
