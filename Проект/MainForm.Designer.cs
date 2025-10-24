@@ -33,11 +33,18 @@
             this.buttonDelete = new System.Windows.Forms.Button();
             this.buttonManageCategories = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.lblTotalExpenses = new System.Windows.Forms.Label();
-            this.lblTotalIncome = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.lblExpensesThisMonth = new System.Windows.Forms.Label();
+            this.lblIncomeThisMonth = new System.Windows.Forms.Label();
+            this.lblBalanceThisMonth = new System.Windows.Forms.Label();
+            this.lblExpensesLastMonth = new System.Windows.Forms.Label();
+            this.lblIncomeLastMonth = new System.Windows.Forms.Label();
+            this.comboBoxMonth = new System.Windows.Forms.ComboBox();
+            this.label10 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewOperations)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -189,71 +196,145 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.lblTotalExpenses);
-            this.groupBox2.Controls.Add(this.lblTotalIncome);
+            this.groupBox2.Controls.Add(this.comboBoxMonth);
+            this.groupBox2.Controls.Add(this.label10);
+            this.groupBox2.Controls.Add(this.label9);
+            this.groupBox2.Controls.Add(this.label8);
             this.groupBox2.Controls.Add(this.label7);
             this.groupBox2.Controls.Add(this.label6);
             this.groupBox2.Controls.Add(this.label5);
+            this.groupBox2.Controls.Add(this.lblExpensesThisMonth);
+            this.groupBox2.Controls.Add(this.lblIncomeThisMonth);
+            this.groupBox2.Controls.Add(this.lblBalanceThisMonth);
+            this.groupBox2.Controls.Add(this.lblExpensesLastMonth);
+            this.groupBox2.Controls.Add(this.lblIncomeLastMonth);
             this.groupBox2.Location = new System.Drawing.Point(12, 390);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(600, 80);
+            this.groupBox2.Size = new System.Drawing.Size(600, 120);
             this.groupBox2.TabIndex = 7;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Общая статистика за все время";
+            this.groupBox2.Text = "Статистика по месяцам";
             // 
-            // lblTotalExpenses
+            // label9
             // 
-            this.lblTotalExpenses.AutoSize = true;
-            this.lblTotalExpenses.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblTotalExpenses.ForeColor = System.Drawing.Color.Red;
-            this.lblTotalExpenses.Location = new System.Drawing.Point(400, 35);
-            this.lblTotalExpenses.Name = "lblTotalExpenses";
-            this.lblTotalExpenses.Size = new System.Drawing.Size(35, 19);
-            this.lblTotalExpenses.TabIndex = 4;
-            this.lblTotalExpenses.Text = "0 ₽";
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(480, 60);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(67, 15);
+            this.label9.TabIndex = 9;
+            this.label9.Text = "Прошлый:";
             // 
-            // lblTotalIncome
+            // label8
             // 
-            this.lblTotalIncome.AutoSize = true;
-            this.lblTotalIncome.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblTotalIncome.ForeColor = System.Drawing.Color.Green;
-            this.lblTotalIncome.Location = new System.Drawing.Point(150, 35);
-            this.lblTotalIncome.Name = "lblTotalIncome";
-            this.lblTotalIncome.Size = new System.Drawing.Size(35, 19);
-            this.lblTotalIncome.TabIndex = 3;
-            this.lblTotalIncome.Text = "0 ₽";
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(480, 30);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(67, 15);
+            this.label8.TabIndex = 8;
+            this.label8.Text = "Текущий:";
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(320, 37);
+            this.label7.Location = new System.Drawing.Point(320, 60);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(74, 15);
-            this.label7.TabIndex = 2;
-            this.label7.Text = "Расходы:";
+            this.label7.Size = new System.Drawing.Size(67, 15);
+            this.label7.TabIndex = 7;
+            this.label7.Text = "Прошлый:";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(80, 37);
+            this.label6.Location = new System.Drawing.Point(320, 30);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(64, 15);
-            this.label6.TabIndex = 1;
-            this.label6.Text = "Доходы:";
+            this.label6.Size = new System.Drawing.Size(67, 15);
+            this.label6.TabIndex = 6;
+            this.label6.Text = "Текущий:";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(20, 37);
+            this.label5.Location = new System.Drawing.Point(160, 30);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(0, 15);
-            this.label5.TabIndex = 0;
+            this.label5.Size = new System.Drawing.Size(67, 15);
+            this.label5.TabIndex = 5;
+            this.label5.Text = "Текущий:";
+            // 
+            // lblExpensesThisMonth
+            // 
+            this.lblExpensesThisMonth.AutoSize = true;
+            this.lblExpensesThisMonth.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lblExpensesThisMonth.ForeColor = System.Drawing.Color.Red;
+            this.lblExpensesThisMonth.Location = new System.Drawing.Point(400, 30);
+            this.lblExpensesThisMonth.Name = "lblExpensesThisMonth";
+            this.lblExpensesThisMonth.Size = new System.Drawing.Size(32, 15);
+            this.lblExpensesThisMonth.TabIndex = 4;
+            this.lblExpensesThisMonth.Text = "0 ₽";
+            // 
+            // lblIncomeThisMonth
+            // 
+            this.lblIncomeThisMonth.AutoSize = true;
+            this.lblIncomeThisMonth.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lblIncomeThisMonth.ForeColor = System.Drawing.Color.Green;
+            this.lblIncomeThisMonth.Location = new System.Drawing.Point(240, 30);
+            this.lblIncomeThisMonth.Name = "lblIncomeThisMonth";
+            this.lblIncomeThisMonth.Size = new System.Drawing.Size(32, 15);
+            this.lblIncomeThisMonth.TabIndex = 3;
+            this.lblIncomeThisMonth.Text = "0 ₽";
+            // 
+            // lblBalanceThisMonth
+            // 
+            this.lblBalanceThisMonth.AutoSize = true;
+            this.lblBalanceThisMonth.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lblBalanceThisMonth.Location = new System.Drawing.Point(80, 30);
+            this.lblBalanceThisMonth.Name = "lblBalanceThisMonth";
+            this.lblBalanceThisMonth.Size = new System.Drawing.Size(32, 15);
+            this.lblBalanceThisMonth.TabIndex = 2;
+            this.lblBalanceThisMonth.Text = "0 ₽";
+            // 
+            // lblExpensesLastMonth
+            // 
+            this.lblExpensesLastMonth.AutoSize = true;
+            this.lblExpensesLastMonth.ForeColor = System.Drawing.Color.Red;
+            this.lblExpensesLastMonth.Location = new System.Drawing.Point(400, 60);
+            this.lblExpensesLastMonth.Name = "lblExpensesLastMonth";
+            this.lblExpensesLastMonth.Size = new System.Drawing.Size(32, 15);
+            this.lblExpensesLastMonth.TabIndex = 1;
+            this.lblExpensesLastMonth.Text = "0 ₽";
+            // 
+            // lblIncomeLastMonth
+            // 
+            this.lblIncomeLastMonth.AutoSize = true;
+            this.lblIncomeLastMonth.ForeColor = System.Drawing.Color.Green;
+            this.lblIncomeLastMonth.Location = new System.Drawing.Point(240, 60);
+            this.lblIncomeLastMonth.Name = "lblIncomeLastMonth";
+            this.lblIncomeLastMonth.Size = new System.Drawing.Size(32, 15);
+            this.lblIncomeLastMonth.TabIndex = 0;
+            this.lblIncomeLastMonth.Text = "0 ₽";
+            // 
+            // comboBoxMonth
+            // 
+            this.comboBoxMonth.FormattingEnabled = true;
+            this.comboBoxMonth.Location = new System.Drawing.Point(80, 85);
+            this.comboBoxMonth.Name = "comboBoxMonth";
+            this.comboBoxMonth.Size = new System.Drawing.Size(150, 23);
+            this.comboBoxMonth.TabIndex = 11;
+            this.comboBoxMonth.SelectedIndexChanged += new System.EventHandler(this.comboBoxMonth_SelectedIndexChanged);
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(10, 88);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(53, 15);
+            this.label10.TabIndex = 10;
+            this.label10.Text = "Месяц:";
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(624, 482);
+            this.ClientSize = new System.Drawing.Size(624, 522);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.buttonManageCategories);
             this.Controls.Add(this.buttonDelete);
@@ -293,10 +374,17 @@
         private Button buttonDelete;
         private Button buttonManageCategories;
         private GroupBox groupBox2;
-        private Label lblTotalExpenses;
-        private Label lblTotalIncome;
+        private Label lblExpensesThisMonth;
+        private Label lblIncomeThisMonth;
+        private Label lblBalanceThisMonth;
+        private Label lblExpensesLastMonth;
+        private Label lblIncomeLastMonth;
+        private Label label9;
+        private Label label8;
         private Label label7;
         private Label label6;
         private Label label5;
+        private ComboBox comboBoxMonth;
+        private Label label10;
     }
 }

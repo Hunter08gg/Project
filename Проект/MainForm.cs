@@ -33,25 +33,120 @@ namespace PersonalFinanceTracker
             ConfigureDataGridView();
             UpdateBalance();
             UpdateCategoriesComboBox();
-            UpdateTotalStatistics();
+            InitializeMonthComboBox();
+            UpdateMonthlyStatistics();
         }
 
-        private void UpdateTotalStatistics()
+        private void InitializeMonthComboBox()
         {
-            decimal totalIncome = 0;
-            decimal totalExpenses = 0;
+            comboBoxMonth.Items.Clear();
+
+            // Добавляем последние 12 месяцев
+            var currentDate = DateTime.Now;
+            for (int i = 0; i < 12; i++)
+            {
+                var monthDate = currentDate.AddMonths(-i);
+                var monthName = monthDate.ToString("MMMM yyyy");
+                comboBoxMonth.Items.Add(monthName);
+            }
+
+            if (comboBoxMonth.Items.Count > 0)
+            {
+                comboBoxMonth.SelectedIndex = 0;
+            }
+        }
+
+        private void UpdateMonthlyStatistics()
+        {
+            var currentMonth = DateTime.Now.Month;
+            var currentYear = DateTime.Now.Year;
+            var lastMonth = currentMonth == 1 ? 12 : currentMonth - 1;
+            var lastMonthYear = currentMonth == 1 ? currentYear - 1 : currentYear;
+
+            decimal incomeThisMonth = 0;
+            decimal expensesThisMonth = 0;
+            decimal incomeLastMonth = 0;
+            decimal expensesLastMonth = 0;
 
             foreach (var operation in operations)
             {
-                if (operation.Type == "Доход")
-                    totalIncome += operation.Amount;
-                else
-                    totalExpenses += operation.Amount;
+                if (operation.Date.Month == currentMonth && operation.Date.Year == currentYear)
+                {
+                    if (operation.Type == "Доход")
+                        incomeThisMonth += operation.Amount;
+                    else
+                        expensesThisMonth += operation.Amount;
+                }
+                else if (operation.Date.Month == lastMonth && operation.Date.Year == lastMonthYear)
+                {
+                    if (operation.Type == "Доход")
+                        incomeLastMonth += operation.Amount;
+                    else
+                        expensesLastMonth += operation.Amount;
+                }
             }
 
             // Обновляем labels
-            lblTotalIncome.Text = totalIncome.ToString("C2");
-            lblTotalExpenses.Text = totalExpenses.ToString("C2");
+            lblIncomeThisMonth.Text = incomeThisMonth.ToString("C2");
+            lblExpensesThisMonth.Text = expensesThisMonth.ToString("C2");
+            lblBalanceThisMonth.Text = (incomeThisMonth - expensesThisMonth).ToString("C2");
+
+            lblIncomeLastMonth.Text = incomeLastMonth.ToString("C2");
+            lblExpensesLastMonth.Text = expensesLastMonth.ToString("C2");
+
+            // Цвета для баланса текущего месяца
+            lblBalanceThisMonth.ForeColor = (incomeThisMonth - expensesThisMonth) >= 0 ? Color.Green : Color.Red;
+        }
+
+        private void UpdateSelectedMonthStatistics(string selectedMonth)
+        {
+            if (string.IsNullOrEmpty(selectedMonth)) return;
+
+            // Парсим выбранный месяц
+            var parts = selectedMonth.Split(' ');
+            if (parts.Length != 2) return;
+
+            var monthNames = new Dictionary<string, int>
+            {
+                {"январь", 1}, {"февраль", 2}, {"март", 3}, {"апрель", 4},
+                {"май", 5}, {"июнь", 6}, {"июль", 7}, {"август", 8},
+                {"сентябрь", 9}, {"октябрь", 10}, {"ноябрь", 11}, {"декабрь", 12}
+            };
+
+            var monthName = parts[0].ToLower();
+            if (!monthNames.ContainsKey(monthName)) return;
+
+            var month = monthNames[monthName];
+            var year = int.Parse(parts[1]);
+
+            decimal income = 0;
+            decimal expenses = 0;
+
+            foreach (var operation in operations)
+            {
+                if (operation.Date.Month == month && operation.Date.Year == year)
+                {
+                    if (operation.Type == "Доход")
+                        income += operation.Amount;
+                    else
+                        expenses += operation.Amount;
+                }
+            }
+
+            // Обновляем labels для выбранного месяца
+            lblIncomeThisMonth.Text = income.ToString("C2");
+            lblExpensesThisMonth.Text = expenses.ToString("C2");
+            lblBalanceThisMonth.Text = (income - expenses).ToString("C2");
+            lblBalanceThisMonth.ForeColor = (income - expenses) >= 0 ? Color.Green : Color.Red;
+
+            // Скрываем статистику за прошлый месяц при выборе конкретного месяца
+            lblIncomeLastMonth.Text = "-";
+            lblExpensesLastMonth.Text = "-";
+            label6.Text = "Выбранный:";
+            label8.Text = "Выбранный:";
+            label5.Text = "Выбранный:";
+            label7.Visible = false;
+            label9.Visible = false;
         }
 
         private void InitializeDatabase()
@@ -239,7 +334,7 @@ namespace PersonalFinanceTracker
 
                 textBoxAmount.Clear();
                 UpdateBalance();
-                UpdateTotalStatistics();
+                UpdateMonthlyStatistics();
             }
             else
             {
@@ -290,7 +385,7 @@ namespace PersonalFinanceTracker
         private void buttonUpdateBalance_Click(object sender, EventArgs e)
         {
             UpdateBalance();
-            UpdateTotalStatistics();
+            UpdateMonthlyStatistics();
         }
 
         private void buttonDelete_Click(object sender, EventArgs e)
@@ -307,7 +402,7 @@ namespace PersonalFinanceTracker
                     DeleteOperationFromDatabase(selectedOperation.Id);
                     LoadOperations();
                     UpdateBalance();
-                    UpdateTotalStatistics();
+                    UpdateMonthlyStatistics();
                 }
             }
             else
@@ -337,6 +432,31 @@ namespace PersonalFinanceTracker
                 {
                     LoadCategories();
                     UpdateCategoriesComboBox();
+                }
+            }
+        }
+
+        // ДОБАВЬТЕ ЭТОТ МЕТОД ДЛЯ ИСПРАВЛЕНИЯ ОШИБКИ
+        private void comboBoxMonth_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBoxMonth.SelectedItem != null)
+            {
+                var selectedMonth = comboBoxMonth.SelectedItem.ToString();
+                if (selectedMonth == DateTime.Now.ToString("MMMM yyyy"))
+                {
+                    // Если выбран текущий месяц, показываем обычную статистику
+                    UpdateMonthlyStatistics();
+                    // Восстанавливаем labels
+                    label6.Text = "Текущий:";
+                    label8.Text = "Текущий:";
+                    label5.Text = "Текущий:";
+                    label7.Visible = true;
+                    label9.Visible = true;
+                }
+                else
+                {
+                    // Показываем статистику для выбранного месяца
+                    UpdateSelectedMonthStatistics(selectedMonth);
                 }
             }
         }
