@@ -6,6 +6,8 @@ using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using Microsoft.Data.Sqlite;
+using System.Globalization;
+using System.Threading;
 
 namespace PersonalFinanceTracker
 {
@@ -22,6 +24,10 @@ namespace PersonalFinanceTracker
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+            // Устанавливаем русскую культуру для корректного отображения месяцев
+            Thread.CurrentThread.CurrentCulture = new CultureInfo("ru-RU");
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo("ru-RU");
+
             InitializeDatabase();
             LoadCategories();
             LoadOperations();
@@ -37,6 +43,8 @@ namespace PersonalFinanceTracker
             UpdateMonthlyStatistics();
         }
 
+        
+        // Обновите метод InitializeMonthComboBox для использования русского формата
         private void InitializeMonthComboBox()
         {
             comboBoxMonth.Items.Clear();
@@ -46,7 +54,7 @@ namespace PersonalFinanceTracker
             for (int i = 0; i < 12; i++)
             {
                 var monthDate = currentDate.AddMonths(-i);
-                var monthName = monthDate.ToString("MMMM yyyy");
+                var monthName = monthDate.ToString("MMMM yyyy", System.Globalization.CultureInfo.GetCultureInfo("ru-RU"));
                 comboBoxMonth.Items.Add(monthName);
             }
 
@@ -96,57 +104,56 @@ namespace PersonalFinanceTracker
 
             // Цвета для баланса текущего месяца
             lblBalanceThisMonth.ForeColor = (incomeThisMonth - expensesThisMonth) >= 0 ? Color.Green : Color.Red;
+
+            // Восстанавливаем стандартные подписи
+            RestoreDefaultLabels();
         }
 
         private void UpdateSelectedMonthStatistics(string selectedMonth)
         {
             if (string.IsNullOrEmpty(selectedMonth)) return;
 
-            // Парсим выбранный месяц
-            var parts = selectedMonth.Split(' ');
-            if (parts.Length != 2) return;
-
-            var monthNames = new Dictionary<string, int>
+            try
             {
-                {"январь", 1}, {"февраль", 2}, {"март", 3}, {"апрель", 4},
-                {"май", 5}, {"июнь", 6}, {"июль", 7}, {"август", 8},
-                {"сентябрь", 9}, {"октябрь", 10}, {"ноябрь", 11}, {"декабрь", 12}
-            };
+                // Парсим выбранный месяц - используем правильный формат
+                var monthDate = DateTime.ParseExact(selectedMonth, "MMMM yyyy", System.Globalization.CultureInfo.GetCultureInfo("ru-RU"));
 
-            var monthName = parts[0].ToLower();
-            if (!monthNames.ContainsKey(monthName)) return;
+                decimal income = 0;
+                decimal expenses = 0;
 
-            var month = monthNames[monthName];
-            var year = int.Parse(parts[1]);
-
-            decimal income = 0;
-            decimal expenses = 0;
-
-            foreach (var operation in operations)
-            {
-                if (operation.Date.Month == month && operation.Date.Year == year)
+                foreach (var operation in operations)
                 {
-                    if (operation.Type == "Доход")
-                        income += operation.Amount;
-                    else
-                        expenses += operation.Amount;
+                    if (operation.Date.Month == monthDate.Month && operation.Date.Year == monthDate.Year)
+                    {
+                        if (operation.Type == "Доход")
+                            income += operation.Amount;
+                        else
+                            expenses += operation.Amount;
+                    }
                 }
+
+                // Обновляем labels для выбранного месяца
+                lblIncomeThisMonth.Text = income.ToString("C2");
+                lblExpensesThisMonth.Text = expenses.ToString("C2");
+                lblBalanceThisMonth.Text = (income - expenses).ToString("C2");
+                lblBalanceThisMonth.ForeColor = (income - expenses) >= 0 ? Color.Green : Color.Red;
+
+                // Скрываем статистику за прошлый месяц при выборе конкретного месяца
+                lblIncomeLastMonth.Text = "-";
+                lblExpensesLastMonth.Text = "-";
+
+                // Обновляем подписи
+                label6.Text = "Выбранный:";
+                label8.Text = "Выбранный:";
+                label5.Text = "Выбранный:";
+                label7.Visible = false;
+                label9.Visible = false;
             }
-
-            // Обновляем labels для выбранного месяца
-            lblIncomeThisMonth.Text = income.ToString("C2");
-            lblExpensesThisMonth.Text = expenses.ToString("C2");
-            lblBalanceThisMonth.Text = (income - expenses).ToString("C2");
-            lblBalanceThisMonth.ForeColor = (income - expenses) >= 0 ? Color.Green : Color.Red;
-
-            // Скрываем статистику за прошлый месяц при выборе конкретного месяца
-            lblIncomeLastMonth.Text = "-";
-            lblExpensesLastMonth.Text = "-";
-            label6.Text = "Выбранный:";
-            label8.Text = "Выбранный:";
-            label5.Text = "Выбранный:";
-            label7.Visible = false;
-            label9.Visible = false;
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка при обработке месяца: {ex.Message}", "Ошибка",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void InitializeDatabase()
@@ -436,22 +443,19 @@ namespace PersonalFinanceTracker
             }
         }
 
-        // ДОБАВЬТЕ ЭТОТ МЕТОД ДЛЯ ИСПРАВЛЕНИЯ ОШИБКИ
         private void comboBoxMonth_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (comboBoxMonth.SelectedItem != null)
             {
                 var selectedMonth = comboBoxMonth.SelectedItem.ToString();
-                if (selectedMonth == DateTime.Now.ToString("MMMM yyyy"))
+                var currentMonth = DateTime.Now.ToString("MMMM yyyy", System.Globalization.CultureInfo.GetCultureInfo("ru-RU"));
+
+                if (selectedMonth == currentMonth)
                 {
                     // Если выбран текущий месяц, показываем обычную статистику
                     UpdateMonthlyStatistics();
                     // Восстанавливаем labels
-                    label6.Text = "Текущий:";
-                    label8.Text = "Текущий:";
-                    label5.Text = "Текущий:";
-                    label7.Visible = true;
-                    label9.Visible = true;
+                    RestoreDefaultLabels();
                 }
                 else
                 {
@@ -460,8 +464,19 @@ namespace PersonalFinanceTracker
                 }
             }
         }
+    // Новый метод для восстановления стандартных подписей
+        private void RestoreDefaultLabels()
+        {
+            label6.Text = "Текущий:";
+            label8.Text = "Текущий:";
+            label5.Text = "Текущий:";
+            label7.Visible = true;
+            label9.Visible = true;
+        }
     }
 
+
+    
     public class FinancialOperation
     {
         public int Id { get; set; }
