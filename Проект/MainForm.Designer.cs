@@ -17,342 +17,342 @@
 
         private void InitializeComponent()
         {
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.dateTimePicker = new System.Windows.Forms.DateTimePicker();
-            this.comboBoxCategory = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.textBoxAmount = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.comboBoxType = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.buttonAdd = new System.Windows.Forms.Button();
-            this.label4 = new System.Windows.Forms.Label();
-            this.textBoxBalance = new System.Windows.Forms.TextBox();
-            this.dataGridViewOperations = new System.Windows.Forms.DataGridView();
-            this.buttonUpdateBalance = new System.Windows.Forms.Button();
-            this.buttonDelete = new System.Windows.Forms.Button();
-            this.buttonManageCategories = new System.Windows.Forms.Button();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.lblExpensesThisMonth = new System.Windows.Forms.Label();
-            this.lblIncomeThisMonth = new System.Windows.Forms.Label();
-            this.lblBalanceThisMonth = new System.Windows.Forms.Label();
-            this.lblExpensesLastMonth = new System.Windows.Forms.Label();
-            this.lblIncomeLastMonth = new System.Windows.Forms.Label();
-            this.comboBoxMonth = new System.Windows.Forms.ComboBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewOperations)).BeginInit();
-            this.groupBox2.SuspendLayout();
-            this.SuspendLayout();
+            groupBox1 = new GroupBox();
+            dateTimePicker = new DateTimePicker();
+            comboBoxCategory = new ComboBox();
+            label3 = new Label();
+            textBoxAmount = new TextBox();
+            label2 = new Label();
+            comboBoxType = new ComboBox();
+            label1 = new Label();
+            buttonAdd = new Button();
+            label4 = new Label();
+            textBoxBalance = new TextBox();
+            dataGridViewOperations = new DataGridView();
+            buttonUpdateBalance = new Button();
+            buttonDelete = new Button();
+            buttonManageCategories = new Button();
+            groupBox2 = new GroupBox();
+            comboBoxMonth = new ComboBox();
+            label10 = new Label();
+            label9 = new Label();
+            label8 = new Label();
+            label7 = new Label();
+            label6 = new Label();
+            label5 = new Label();
+            lblExpensesThisMonth = new Label();
+            lblIncomeThisMonth = new Label();
+            lblBalanceThisMonth = new Label();
+            lblExpensesLastMonth = new Label();
+            lblIncomeLastMonth = new Label();
+            groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewOperations).BeginInit();
+            groupBox2.SuspendLayout();
+            SuspendLayout();
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.dateTimePicker);
-            this.groupBox1.Controls.Add(this.comboBoxCategory);
-            this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.textBoxAmount);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.comboBoxType);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.buttonAdd);
-            this.groupBox1.Location = new System.Drawing.Point(12, 12);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(360, 150);
-            this.groupBox1.TabIndex = 0;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Добавление операции";
+            groupBox1.Controls.Add(dateTimePicker);
+            groupBox1.Controls.Add(comboBoxCategory);
+            groupBox1.Controls.Add(label3);
+            groupBox1.Controls.Add(textBoxAmount);
+            groupBox1.Controls.Add(label2);
+            groupBox1.Controls.Add(comboBoxType);
+            groupBox1.Controls.Add(label1);
+            groupBox1.Controls.Add(buttonAdd);
+            groupBox1.Location = new Point(12, 12);
+            groupBox1.Name = "groupBox1";
+            groupBox1.Size = new Size(360, 150);
+            groupBox1.TabIndex = 0;
+            groupBox1.TabStop = false;
+            groupBox1.Text = "Добавление операции";
             // 
             // dateTimePicker
             // 
-            this.dateTimePicker.Location = new System.Drawing.Point(80, 92);
-            this.dateTimePicker.Name = "dateTimePicker";
-            this.dateTimePicker.Size = new System.Drawing.Size(120, 23);
-            this.dateTimePicker.TabIndex = 7;
+            dateTimePicker.Location = new Point(80, 92);
+            dateTimePicker.Name = "dateTimePicker";
+            dateTimePicker.Size = new Size(120, 23);
+            dateTimePicker.TabIndex = 7;
             // 
             // comboBoxCategory
             // 
-            this.comboBoxCategory.FormattingEnabled = true;
-            this.comboBoxCategory.Location = new System.Drawing.Point(80, 57);
-            this.comboBoxCategory.Name = "comboBoxCategory";
-            this.comboBoxCategory.Size = new System.Drawing.Size(200, 23);
-            this.comboBoxCategory.TabIndex = 6;
+            comboBoxCategory.FormattingEnabled = true;
+            comboBoxCategory.Location = new Point(80, 57);
+            comboBoxCategory.Name = "comboBoxCategory";
+            comboBoxCategory.Size = new Size(200, 23);
+            comboBoxCategory.TabIndex = 6;
             // 
             // label3
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(10, 60);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(69, 15);
-            this.label3.TabIndex = 5;
-            this.label3.Text = "Категория:";
+            label3.AutoSize = true;
+            label3.Location = new Point(10, 60);
+            label3.Name = "label3";
+            label3.Size = new Size(66, 15);
+            label3.TabIndex = 5;
+            label3.Text = "Категория:";
             // 
             // textBoxAmount
             // 
-            this.textBoxAmount.Location = new System.Drawing.Point(220, 22);
-            this.textBoxAmount.Name = "textBoxAmount";
-            this.textBoxAmount.Size = new System.Drawing.Size(100, 23);
-            this.textBoxAmount.TabIndex = 4;
+            textBoxAmount.Location = new Point(220, 22);
+            textBoxAmount.Name = "textBoxAmount";
+            textBoxAmount.Size = new Size(100, 23);
+            textBoxAmount.TabIndex = 4;
             // 
             // label2
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(170, 25);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(54, 15);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Сумма:";
+            label2.AutoSize = true;
+            label2.Location = new Point(170, 25);
+            label2.Name = "label2";
+            label2.Size = new Size(48, 15);
+            label2.TabIndex = 3;
+            label2.Text = "Сумма:";
             // 
             // comboBoxType
             // 
-            this.comboBoxType.FormattingEnabled = true;
-            this.comboBoxType.Location = new System.Drawing.Point(60, 22);
-            this.comboBoxType.Name = "comboBoxType";
-            this.comboBoxType.Size = new System.Drawing.Size(100, 23);
-            this.comboBoxType.TabIndex = 2;
-            this.comboBoxType.SelectedIndexChanged += new System.EventHandler(this.comboBoxType_SelectedIndexChanged);
+            comboBoxType.FormattingEnabled = true;
+            comboBoxType.Location = new Point(60, 22);
+            comboBoxType.Name = "comboBoxType";
+            comboBoxType.Size = new Size(100, 23);
+            comboBoxType.TabIndex = 2;
+            comboBoxType.SelectedIndexChanged += comboBoxType_SelectedIndexChanged;
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(10, 25);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(30, 15);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Тип:";
+            label1.AutoSize = true;
+            label1.Location = new Point(10, 25);
+            label1.Name = "label1";
+            label1.Size = new Size(30, 15);
+            label1.TabIndex = 1;
+            label1.Text = "Тип:";
             // 
             // buttonAdd
             // 
-            this.buttonAdd.Location = new System.Drawing.Point(220, 90);
-            this.buttonAdd.Name = "buttonAdd";
-            this.buttonAdd.Size = new System.Drawing.Size(100, 30);
-            this.buttonAdd.TabIndex = 0;
-            this.buttonAdd.Text = "Добавить";
-            this.buttonAdd.UseVisualStyleBackColor = true;
-            this.buttonAdd.Click += new System.EventHandler(this.buttonAdd_Click);
+            buttonAdd.Location = new Point(220, 90);
+            buttonAdd.Name = "buttonAdd";
+            buttonAdd.Size = new Size(100, 30);
+            buttonAdd.TabIndex = 0;
+            buttonAdd.Text = "Добавить";
+            buttonAdd.UseVisualStyleBackColor = true;
+            buttonAdd.Click += buttonAdd_Click;
             // 
             // label4
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(400, 30);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(94, 15);
-            this.label4.TabIndex = 1;
-            this.label4.Text = "Общий баланс:";
+            label4.AutoSize = true;
+            label4.Location = new Point(400, 30);
+            label4.Name = "label4";
+            label4.Size = new Size(93, 15);
+            label4.TabIndex = 1;
+            label4.Text = "Общий баланс:";
             // 
             // textBoxBalance
             // 
-            this.textBoxBalance.Location = new System.Drawing.Point(500, 27);
-            this.textBoxBalance.Name = "textBoxBalance";
-            this.textBoxBalance.ReadOnly = true;
-            this.textBoxBalance.Size = new System.Drawing.Size(100, 23);
-            this.textBoxBalance.TabIndex = 2;
-            this.textBoxBalance.Text = "0";
+            textBoxBalance.Location = new Point(500, 27);
+            textBoxBalance.Name = "textBoxBalance";
+            textBoxBalance.ReadOnly = true;
+            textBoxBalance.Size = new Size(100, 23);
+            textBoxBalance.TabIndex = 2;
+            textBoxBalance.Text = "0";
             // 
             // dataGridViewOperations
             // 
-            this.dataGridViewOperations.AllowUserToAddRows = false;
-            this.dataGridViewOperations.AllowUserToDeleteRows = false;
-            this.dataGridViewOperations.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewOperations.Location = new System.Drawing.Point(12, 180);
-            this.dataGridViewOperations.Name = "dataGridViewOperations";
-            this.dataGridViewOperations.ReadOnly = true;
-            this.dataGridViewOperations.Size = new System.Drawing.Size(600, 200);
-            this.dataGridViewOperations.TabIndex = 3;
+            dataGridViewOperations.AllowUserToAddRows = false;
+            dataGridViewOperations.AllowUserToDeleteRows = false;
+            dataGridViewOperations.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewOperations.Location = new Point(12, 180);
+            dataGridViewOperations.Name = "dataGridViewOperations";
+            dataGridViewOperations.ReadOnly = true;
+            dataGridViewOperations.Size = new Size(600, 200);
+            dataGridViewOperations.TabIndex = 3;
             // 
             // buttonUpdateBalance
             // 
-            this.buttonUpdateBalance.Location = new System.Drawing.Point(400, 60);
-            this.buttonUpdateBalance.Name = "buttonUpdateBalance";
-            this.buttonUpdateBalance.Size = new System.Drawing.Size(120, 30);
-            this.buttonUpdateBalance.TabIndex = 4;
-            this.buttonUpdateBalance.Text = "Обновить баланс";
-            this.buttonUpdateBalance.UseVisualStyleBackColor = true;
-            this.buttonUpdateBalance.Click += new System.EventHandler(this.buttonUpdateBalance_Click);
+            buttonUpdateBalance.Location = new Point(400, 60);
+            buttonUpdateBalance.Name = "buttonUpdateBalance";
+            buttonUpdateBalance.Size = new Size(120, 30);
+            buttonUpdateBalance.TabIndex = 4;
+            buttonUpdateBalance.Text = "Обновить баланс";
+            buttonUpdateBalance.UseVisualStyleBackColor = true;
+            buttonUpdateBalance.Click += buttonUpdateBalance_Click;
             // 
             // buttonDelete
             // 
-            this.buttonDelete.Location = new System.Drawing.Point(400, 100);
-            this.buttonDelete.Name = "buttonDelete";
-            this.buttonDelete.Size = new System.Drawing.Size(120, 30);
-            this.buttonDelete.TabIndex = 5;
-            this.buttonDelete.Text = "Удалить запись";
-            this.buttonDelete.UseVisualStyleBackColor = true;
-            this.buttonDelete.Click += new System.EventHandler(this.buttonDelete_Click);
+            buttonDelete.Location = new Point(400, 100);
+            buttonDelete.Name = "buttonDelete";
+            buttonDelete.Size = new Size(120, 30);
+            buttonDelete.TabIndex = 5;
+            buttonDelete.Text = "Удалить запись";
+            buttonDelete.UseVisualStyleBackColor = true;
+            buttonDelete.Click += buttonDelete_Click;
             // 
             // buttonManageCategories
             // 
-            this.buttonManageCategories.Location = new System.Drawing.Point(400, 140);
-            this.buttonManageCategories.Name = "buttonManageCategories";
-            this.buttonManageCategories.Size = new System.Drawing.Size(120, 30);
-            this.buttonManageCategories.TabIndex = 6;
-            this.buttonManageCategories.Text = "Категории";
-            this.buttonManageCategories.UseVisualStyleBackColor = true;
-            this.buttonManageCategories.Click += new System.EventHandler(this.buttonManageCategories_Click);
+            buttonManageCategories.Location = new Point(400, 140);
+            buttonManageCategories.Name = "buttonManageCategories";
+            buttonManageCategories.Size = new Size(120, 30);
+            buttonManageCategories.TabIndex = 6;
+            buttonManageCategories.Text = "Категории";
+            buttonManageCategories.UseVisualStyleBackColor = true;
+            buttonManageCategories.Click += buttonManageCategories_Click;
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.comboBoxMonth);
-            this.groupBox2.Controls.Add(this.label10);
-            this.groupBox2.Controls.Add(this.label9);
-            this.groupBox2.Controls.Add(this.label8);
-            this.groupBox2.Controls.Add(this.label7);
-            this.groupBox2.Controls.Add(this.label6);
-            this.groupBox2.Controls.Add(this.label5);
-            this.groupBox2.Controls.Add(this.lblExpensesThisMonth);
-            this.groupBox2.Controls.Add(this.lblIncomeThisMonth);
-            this.groupBox2.Controls.Add(this.lblBalanceThisMonth);
-            this.groupBox2.Controls.Add(this.lblExpensesLastMonth);
-            this.groupBox2.Controls.Add(this.lblIncomeLastMonth);
-            this.groupBox2.Location = new System.Drawing.Point(12, 390);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(600, 120);
-            this.groupBox2.TabIndex = 7;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Статистика по месяцам";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(480, 60);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(67, 15);
-            this.label9.TabIndex = 9;
-            this.label9.Text = "Прошлый:";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(480, 30);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(67, 15);
-            this.label8.TabIndex = 8;
-            this.label8.Text = "Текущий:";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(320, 60);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(67, 15);
-            this.label7.TabIndex = 7;
-            this.label7.Text = "Прошлый:";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(320, 30);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(67, 15);
-            this.label6.TabIndex = 6;
-            this.label6.Text = "Текущий:";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(160, 30);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(67, 15);
-            this.label5.TabIndex = 5;
-            this.label5.Text = "Текущий:";
-            // 
-            // lblExpensesThisMonth
-            // 
-            this.lblExpensesThisMonth.AutoSize = true;
-            this.lblExpensesThisMonth.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblExpensesThisMonth.ForeColor = System.Drawing.Color.Red;
-            this.lblExpensesThisMonth.Location = new System.Drawing.Point(400, 30);
-            this.lblExpensesThisMonth.Name = "lblExpensesThisMonth";
-            this.lblExpensesThisMonth.Size = new System.Drawing.Size(32, 15);
-            this.lblExpensesThisMonth.TabIndex = 4;
-            this.lblExpensesThisMonth.Text = "0 ₽";
-            // 
-            // lblIncomeThisMonth
-            // 
-            this.lblIncomeThisMonth.AutoSize = true;
-            this.lblIncomeThisMonth.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblIncomeThisMonth.ForeColor = System.Drawing.Color.Green;
-            this.lblIncomeThisMonth.Location = new System.Drawing.Point(240, 30);
-            this.lblIncomeThisMonth.Name = "lblIncomeThisMonth";
-            this.lblIncomeThisMonth.Size = new System.Drawing.Size(32, 15);
-            this.lblIncomeThisMonth.TabIndex = 3;
-            this.lblIncomeThisMonth.Text = "0 ₽";
-            // 
-            // lblBalanceThisMonth
-            // 
-            this.lblBalanceThisMonth.AutoSize = true;
-            this.lblBalanceThisMonth.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblBalanceThisMonth.Location = new System.Drawing.Point(80, 30);
-            this.lblBalanceThisMonth.Name = "lblBalanceThisMonth";
-            this.lblBalanceThisMonth.Size = new System.Drawing.Size(32, 15);
-            this.lblBalanceThisMonth.TabIndex = 2;
-            this.lblBalanceThisMonth.Text = "0 ₽";
-            // 
-            // lblExpensesLastMonth
-            // 
-            this.lblExpensesLastMonth.AutoSize = true;
-            this.lblExpensesLastMonth.ForeColor = System.Drawing.Color.Red;
-            this.lblExpensesLastMonth.Location = new System.Drawing.Point(400, 60);
-            this.lblExpensesLastMonth.Name = "lblExpensesLastMonth";
-            this.lblExpensesLastMonth.Size = new System.Drawing.Size(32, 15);
-            this.lblExpensesLastMonth.TabIndex = 1;
-            this.lblExpensesLastMonth.Text = "0 ₽";
-            // 
-            // lblIncomeLastMonth
-            // 
-            this.lblIncomeLastMonth.AutoSize = true;
-            this.lblIncomeLastMonth.ForeColor = System.Drawing.Color.Green;
-            this.lblIncomeLastMonth.Location = new System.Drawing.Point(240, 60);
-            this.lblIncomeLastMonth.Name = "lblIncomeLastMonth";
-            this.lblIncomeLastMonth.Size = new System.Drawing.Size(32, 15);
-            this.lblIncomeLastMonth.TabIndex = 0;
-            this.lblIncomeLastMonth.Text = "0 ₽";
+            groupBox2.Controls.Add(comboBoxMonth);
+            groupBox2.Controls.Add(label10);
+            groupBox2.Controls.Add(label9);
+            groupBox2.Controls.Add(label8);
+            groupBox2.Controls.Add(label7);
+            groupBox2.Controls.Add(label6);
+            groupBox2.Controls.Add(label5);
+            groupBox2.Controls.Add(lblExpensesThisMonth);
+            groupBox2.Controls.Add(lblIncomeThisMonth);
+            groupBox2.Controls.Add(lblBalanceThisMonth);
+            groupBox2.Controls.Add(lblExpensesLastMonth);
+            groupBox2.Controls.Add(lblIncomeLastMonth);
+            groupBox2.Location = new Point(12, 390);
+            groupBox2.Name = "groupBox2";
+            groupBox2.Size = new Size(600, 120);
+            groupBox2.TabIndex = 7;
+            groupBox2.TabStop = false;
+            groupBox2.Text = "Статистика по месяцам";
             // 
             // comboBoxMonth
             // 
-            this.comboBoxMonth.FormattingEnabled = true;
-            this.comboBoxMonth.Location = new System.Drawing.Point(80, 85);
-            this.comboBoxMonth.Name = "comboBoxMonth";
-            this.comboBoxMonth.Size = new System.Drawing.Size(150, 23);
-            this.comboBoxMonth.TabIndex = 11;
-            this.comboBoxMonth.SelectedIndexChanged += new System.EventHandler(this.comboBoxMonth_SelectedIndexChanged);
+            comboBoxMonth.FormattingEnabled = true;
+            comboBoxMonth.Location = new Point(80, 85);
+            comboBoxMonth.Name = "comboBoxMonth";
+            comboBoxMonth.Size = new Size(150, 23);
+            comboBoxMonth.TabIndex = 11;
+            comboBoxMonth.SelectedIndexChanged += comboBoxMonth_SelectedIndexChanged;
             // 
             // label10
             // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(10, 88);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(53, 15);
-            this.label10.TabIndex = 10;
-            this.label10.Text = "Месяц:";
+            label10.AutoSize = true;
+            label10.Location = new Point(10, 88);
+            label10.Name = "label10";
+            label10.Size = new Size(46, 15);
+            label10.TabIndex = 10;
+            label10.Text = "Месяц:";
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Location = new Point(480, 60);
+            label9.Name = "label9";
+            label9.Size = new Size(67, 15);
+            label9.TabIndex = 9;
+            label9.Text = "Прошлый:";
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Location = new Point(480, 30);
+            label8.Name = "label8";
+            label8.Size = new Size(59, 15);
+            label8.TabIndex = 8;
+            label8.Text = "Текущий:";
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Location = new Point(320, 60);
+            label7.Name = "label7";
+            label7.Size = new Size(67, 15);
+            label7.TabIndex = 7;
+            label7.Text = "Прошлый:";
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Location = new Point(320, 30);
+            label6.Name = "label6";
+            label6.Size = new Size(59, 15);
+            label6.TabIndex = 6;
+            label6.Text = "Текущий:";
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(160, 30);
+            label5.Name = "label5";
+            label5.Size = new Size(59, 15);
+            label5.TabIndex = 5;
+            label5.Text = "Текущий:";
+            // 
+            // lblExpensesThisMonth
+            // 
+            lblExpensesThisMonth.AutoSize = true;
+            lblExpensesThisMonth.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            lblExpensesThisMonth.ForeColor = Color.Red;
+            lblExpensesThisMonth.Location = new Point(400, 30);
+            lblExpensesThisMonth.Name = "lblExpensesThisMonth";
+            lblExpensesThisMonth.Size = new Size(24, 15);
+            lblExpensesThisMonth.TabIndex = 4;
+            lblExpensesThisMonth.Text = "0 ₽";
+            // 
+            // lblIncomeThisMonth
+            // 
+            lblIncomeThisMonth.AutoSize = true;
+            lblIncomeThisMonth.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            lblIncomeThisMonth.ForeColor = Color.Green;
+            lblIncomeThisMonth.Location = new Point(240, 30);
+            lblIncomeThisMonth.Name = "lblIncomeThisMonth";
+            lblIncomeThisMonth.Size = new Size(24, 15);
+            lblIncomeThisMonth.TabIndex = 3;
+            lblIncomeThisMonth.Text = "0 ₽";
+            // 
+            // lblBalanceThisMonth
+            // 
+            lblBalanceThisMonth.AutoSize = true;
+            lblBalanceThisMonth.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            lblBalanceThisMonth.Location = new Point(80, 30);
+            lblBalanceThisMonth.Name = "lblBalanceThisMonth";
+            lblBalanceThisMonth.Size = new Size(24, 15);
+            lblBalanceThisMonth.TabIndex = 2;
+            lblBalanceThisMonth.Text = "0 ₽";
+            // 
+            // lblExpensesLastMonth
+            // 
+            lblExpensesLastMonth.AutoSize = true;
+            lblExpensesLastMonth.ForeColor = Color.Red;
+            lblExpensesLastMonth.Location = new Point(400, 60);
+            lblExpensesLastMonth.Name = "lblExpensesLastMonth";
+            lblExpensesLastMonth.Size = new Size(22, 15);
+            lblExpensesLastMonth.TabIndex = 1;
+            lblExpensesLastMonth.Text = "0 ₽";
+            // 
+            // lblIncomeLastMonth
+            // 
+            lblIncomeLastMonth.AutoSize = true;
+            lblIncomeLastMonth.ForeColor = Color.Green;
+            lblIncomeLastMonth.Location = new Point(240, 60);
+            lblIncomeLastMonth.Name = "lblIncomeLastMonth";
+            lblIncomeLastMonth.Size = new Size(22, 15);
+            lblIncomeLastMonth.TabIndex = 0;
+            lblIncomeLastMonth.Text = "0 ₽";
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(624, 522);
-            this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.buttonManageCategories);
-            this.Controls.Add(this.buttonDelete);
-            this.Controls.Add(this.buttonUpdateBalance);
-            this.Controls.Add(this.dataGridViewOperations);
-            this.Controls.Add(this.textBoxBalance);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.groupBox1);
-            this.Name = "MainForm";
-            this.Text = "Учет личных финансов";
-            this.Load += new System.EventHandler(this.MainForm_Load);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewOperations)).EndInit();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
-            this.ResumeLayout(false);
-            this.PerformLayout();
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(624, 522);
+            Controls.Add(groupBox2);
+            Controls.Add(buttonManageCategories);
+            Controls.Add(buttonDelete);
+            Controls.Add(buttonUpdateBalance);
+            Controls.Add(dataGridViewOperations);
+            Controls.Add(textBoxBalance);
+            Controls.Add(label4);
+            Controls.Add(groupBox1);
+            Name = "MainForm";
+            Text = "0";
+            Load += MainForm_Load;
+            groupBox1.ResumeLayout(false);
+            groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewOperations).EndInit();
+            groupBox2.ResumeLayout(false);
+            groupBox2.PerformLayout();
+            ResumeLayout(false);
+            PerformLayout();
 
         }
 

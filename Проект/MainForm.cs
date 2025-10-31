@@ -43,18 +43,31 @@ namespace PersonalFinanceTracker
             UpdateMonthlyStatistics();
         }
 
-        
+
         // Обновите метод InitializeMonthComboBox для использования русского формата
         private void InitializeMonthComboBox()
         {
             comboBoxMonth.Items.Clear();
 
-            // Добавляем последние 12 месяцев
-            var currentDate = DateTime.Now;
-            for (int i = 0; i < 12; i++)
+            // Добавляем "Все месяцы" и последние 12 месяцев
+            comboBoxMonth.Items.Add("Все месяцы");
+
+            // Получаем все уникальные месяцы из операций
+            var allMonths = operations
+                .Select(op => new DateTime(op.Date.Year, op.Date.Month, 1))
+                .Distinct()
+                .OrderByDescending(d => d)
+                .ToList();
+
+            // Если операций нет, добавляем текущий месяц
+            if (!allMonths.Any())
             {
-                var monthDate = currentDate.AddMonths(-i);
-                var monthName = monthDate.ToString("MMMM yyyy", System.Globalization.CultureInfo.GetCultureInfo("ru-RU"));
+                allMonths.Add(new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1));
+            }
+
+            foreach (var monthDate in allMonths)
+            {
+                var monthName = monthDate.ToString("MMMM yyyy");
                 comboBoxMonth.Items.Add(monthName);
             }
 
@@ -66,47 +79,113 @@ namespace PersonalFinanceTracker
 
         private void UpdateMonthlyStatistics()
         {
+            if (comboBoxMonth.SelectedItem == null) return;
+
+            var selectedMonth = comboBoxMonth.SelectedItem.ToString();
+
+            if (selectedMonth == "Все месяцы")
+            {
+                ShowAllMonthsStatistics();
+            }
+            else
+            {
+                ShowSelectedMonthStatistics(selectedMonth);
+            }
+        }
+        private void ShowAllMonthsStatistics()
+        {
+            // Общая статистика за все время
+            decimal totalIncome = operations.Where(op => op.Type == "Доход").Sum(op => op.Amount);
+            decimal totalExpenses = operations.Where(op => op.Type == "Расход").Sum(op => op.Amount);
+            decimal totalBalance = totalIncome - totalExpenses;
+
+            // Статистика за текущий месяц
             var currentMonth = DateTime.Now.Month;
             var currentYear = DateTime.Now.Year;
-            var lastMonth = currentMonth == 1 ? 12 : currentMonth - 1;
-            var lastMonthYear = currentMonth == 1 ? currentYear - 1 : currentYear;
+            decimal incomeThisMonth = operations
+                .Where(op => op.Type == "Доход" && op.Date.Month == currentMonth && op.Date.Year == currentYear)
+                .Sum(op => op.Amount);
+            decimal expensesThisMonth = operations
+                .Where(op => op.Type == "Расход" && op.Date.Month == currentMonth && op.Date.Year == currentYear)
+                .Sum(op => op.Amount);
 
-            decimal incomeThisMonth = 0;
-            decimal expensesThisMonth = 0;
-            decimal incomeLastMonth = 0;
-            decimal expensesLastMonth = 0;
+            // Статистика за прошлый месяц
+            var lastMonthDate = DateTime.Now.AddMonths(-1);
+            decimal incomeLastMonth = operations
+                .Where(op => op.Type == "Доход" && op.Date.Month == lastMonthDate.Month && op.Date.Year == lastMonthDate.Year)
+                .Sum(op => op.Amount);
+            decimal expensesLastMonth = operations
+                .Where(op => op.Type == "Расход" && op.Date.Month == lastMonthDate.Month && op.Date.Year == lastMonthDate.Year)
+                .Sum(op => op.Amount);
 
-            foreach (var operation in operations)
+            // Обновляем labels для режима "Все месяцы"
+            lblIncomeThisMonth.Text = totalIncome.ToString("C2");
+            lblExpensesThisMonth.Text = totalExpenses.ToString("C2");
+            lblBalanceThisMonth.Text = totalBalance.ToString("C2");
+            lblBalanceThisMonth.ForeColor = totalBalance >= 0 ? Color.Green : Color.Red;
+
+            lblIncomeLastMonth.Text = incomeThisMonth.ToString("C2");
+            lblExpensesLastMonth.Text = expensesThisMonth.ToString("C2");
+
+            // Обновляем подписи
+            label5.Text = "Всего доход:";
+            label6.Text = "Всего расход:";
+            label7.Text = "Общий баланс:";
+            label8.Text = "Текущий месяц:";
+            label9.Text = "Текущий месяц:";
+
+            label7.Visible = true;
+            label9.Visible = true;
+        }
+
+        private void ShowSelectedMonthStatistics(string selectedMonth)
+        {
+            try
             {
-                if (operation.Date.Month == currentMonth && operation.Date.Year == currentYear)
-                {
-                    if (operation.Type == "Доход")
-                        incomeThisMonth += operation.Amount;
-                    else
-                        expensesThisMonth += operation.Amount;
-                }
-                else if (operation.Date.Month == lastMonth && operation.Date.Year == lastMonthYear)
-                {
-                    if (operation.Type == "Доход")
-                        incomeLastMonth += operation.Amount;
-                    else
-                        expensesLastMonth += operation.Amount;
-                }
+                // Парсим выбранный месяц
+                var monthDate = DateTime.ParseExact(selectedMonth, "MMMM yyyy", CultureInfo.GetCultureInfo("ru-RU"));
+
+                decimal income = operations
+                    .Where(op => op.Type == "Доход" && op.Date.Month == monthDate.Month && op.Date.Year == monthDate.Year)
+                    .Sum(op => op.Amount);
+                decimal expenses = operations
+                    .Where(op => op.Type == "Расход" && op.Date.Month == monthDate.Month && op.Date.Year == monthDate.Year)
+                    .Sum(op => op.Amount);
+                decimal balance = income - expenses;
+
+                // Получаем предыдущий месяц для сравнения
+                var previousMonthDate = monthDate.AddMonths(-1);
+                decimal incomePrevious = operations
+                    .Where(op => op.Type == "Доход" && op.Date.Month == previousMonthDate.Month && op.Date.Year == previousMonthDate.Year)
+                    .Sum(op => op.Amount);
+                decimal expensesPrevious = operations
+                    .Where(op => op.Type == "Расход" && op.Date.Month == previousMonthDate.Month && op.Date.Year == previousMonthDate.Year)
+                    .Sum(op => op.Amount);
+
+                // Обновляем labels для выбранного месяца
+                lblIncomeThisMonth.Text = income.ToString("C2");
+                lblExpensesThisMonth.Text = expenses.ToString("C2");
+                lblBalanceThisMonth.Text = balance.ToString("C2");
+                lblBalanceThisMonth.ForeColor = balance >= 0 ? Color.Green : Color.Red;
+
+                lblIncomeLastMonth.Text = incomePrevious.ToString("C2");
+                lblExpensesLastMonth.Text = expensesPrevious.ToString("C2");
+
+                // Обновляем подписи
+                label5.Text = "Доход:";
+                label6.Text = "Расход:";
+                label7.Text = "<-Пред. месяц";
+                label8.Text = "Пред. месяц:";
+                label9.Text = "<-Пред. месяц";
+
+                label7.Visible = true;
+                label9.Visible = true;
             }
-
-            // Обновляем labels
-            lblIncomeThisMonth.Text = incomeThisMonth.ToString("C2");
-            lblExpensesThisMonth.Text = expensesThisMonth.ToString("C2");
-            lblBalanceThisMonth.Text = (incomeThisMonth - expensesThisMonth).ToString("C2");
-
-            lblIncomeLastMonth.Text = incomeLastMonth.ToString("C2");
-            lblExpensesLastMonth.Text = expensesLastMonth.ToString("C2");
-
-            // Цвета для баланса текущего месяца
-            lblBalanceThisMonth.ForeColor = (incomeThisMonth - expensesThisMonth) >= 0 ? Color.Green : Color.Red;
-
-            // Восстанавливаем стандартные подписи
-            RestoreDefaultLabels();
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка при обработке месяца: {ex.Message}", "Ошибка",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void UpdateSelectedMonthStatistics(string selectedMonth)
@@ -342,6 +421,9 @@ namespace PersonalFinanceTracker
                 textBoxAmount.Clear();
                 UpdateBalance();
                 UpdateMonthlyStatistics();
+
+                // Обновляем список месяцев
+                InitializeMonthComboBox();
             }
             else
             {
@@ -391,6 +473,7 @@ namespace PersonalFinanceTracker
 
         private void buttonUpdateBalance_Click(object sender, EventArgs e)
         {
+            LoadOperations();
             UpdateBalance();
             UpdateMonthlyStatistics();
         }
@@ -410,6 +493,9 @@ namespace PersonalFinanceTracker
                     LoadOperations();
                     UpdateBalance();
                     UpdateMonthlyStatistics();
+
+                    // Обновляем список месяцев
+                    InitializeMonthComboBox();
                 }
             }
             else
@@ -439,32 +525,16 @@ namespace PersonalFinanceTracker
                 {
                     LoadCategories();
                     UpdateCategoriesComboBox();
+                    LoadOperations();
                 }
             }
         }
 
         private void comboBoxMonth_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (comboBoxMonth.SelectedItem != null)
-            {
-                var selectedMonth = comboBoxMonth.SelectedItem.ToString();
-                var currentMonth = DateTime.Now.ToString("MMMM yyyy", System.Globalization.CultureInfo.GetCultureInfo("ru-RU"));
-
-                if (selectedMonth == currentMonth)
-                {
-                    // Если выбран текущий месяц, показываем обычную статистику
-                    UpdateMonthlyStatistics();
-                    // Восстанавливаем labels
-                    RestoreDefaultLabels();
-                }
-                else
-                {
-                    // Показываем статистику для выбранного месяца
-                    UpdateSelectedMonthStatistics(selectedMonth);
-                }
-            }
+            UpdateMonthlyStatistics();
         }
-    // Новый метод для восстановления стандартных подписей
+        // Новый метод для восстановления стандартных подписей
         private void RestoreDefaultLabels()
         {
             label6.Text = "Текущий:";
@@ -474,9 +544,10 @@ namespace PersonalFinanceTracker
             label9.Visible = true;
         }
     }
-
-
     
+
+
+
     public class FinancialOperation
     {
         public int Id { get; set; }
